@@ -4,7 +4,6 @@ package com.app.latihan_jetpack.ui.theme
 * Bisa menggunakan material design 3 sebagai refrensi
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -15,28 +14,12 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
-
-
-/* * * * *
-*
-* Function di bawah ini,
-* Untuk Mengatur Warna Tema ketika Dark Mode
-*
-* * * * */
 private val DarkColorScheme = darkColorScheme(
-
     primary = Purple80,
     secondary = PurpleGrey80,
     tertiary = Pink80
 )
 
-
-/* * * * *
-*
-* Function di bawah ini
-* Untuk Mengatur Warna Tema ketika Light Mode
-*
-* * * * */
 private val LightColorScheme = lightColorScheme(
     primary = Purple40,
     secondary = PurpleGrey40,
@@ -53,14 +36,8 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
-/* * * * *
-*
-* Function Di bawah ini untuk mengatur pengunaan tema ketika,
-* dan cukup memanggil nama functionya untuk menggunakan tema yang telah kita buat secara custom
-*
-* * * * */
 @Composable
-fun LatihanJetpackTheme(
+fun Praktikum_kel12Theme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
