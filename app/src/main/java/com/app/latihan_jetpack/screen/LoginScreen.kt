@@ -1,6 +1,7 @@
 package com.app.latihan_jetpack.screen
 
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -14,9 +15,24 @@ import com.app.latihan_jetpack.model.request.LoginRequest
 import com.app.latihan_jetpack.navigation.Screen
 import com.app.latihan_jetpack.service.api.ApiClient
 import kotlinx.coroutines.launch
+import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.background
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.foundation.Image
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
+import com.app.latihan_jetpack.R
+
+
+
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
+    val LightBlue = Color(0xFF0096c7)
+    val SoftBlue = Color(0xFFf8f9fa)
+
     // State untuk menyimpan input username dan password
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -34,6 +50,18 @@ fun LoginScreen(navController: NavHostController) {
     val coroutineScope = rememberCoroutineScope()
 
     // Tata letak kolom vertikal, berada di tengah layar
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(SoftBlue),
+        contentAlignment = Alignment.Center
+    ){
+        Image(
+            painter = painterResource(id = R.drawable.bg_login),
+            contentDescription = "Background",
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -42,9 +70,17 @@ fun LoginScreen(navController: NavHostController) {
         verticalArrangement = Arrangement.Center
     ) {
         // Judul halaman login
-        Text(text = "Login", style = MaterialTheme.typography.headlineMedium)
-        Spacer(modifier = Modifier.height(16.dp))
-
+        Text(
+            text = "Login",
+            style = MaterialTheme.typography.headlineMedium)
+        Text(
+            text = "Selamat Datang",
+            fontSize = 22.sp,
+            fontWeight = FontWeight.Bold,
+            color = LightBlue
+        )
+        Spacer(
+            modifier = Modifier.height(16.dp))
         // Input field untuk username
         OutlinedTextField(
             value = username,
@@ -54,7 +90,7 @@ fun LoginScreen(navController: NavHostController) {
             },
             isError = usernameError,
             label = { Text("Username") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
 
         // Tampilkan pesan error jika username kosong
@@ -152,12 +188,13 @@ fun LoginScreen(navController: NavHostController) {
             confirmButton = {}, // Tidak ada tombol aksi
             title = { Text("Loading") },
             text = {
-                Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
                     CircularProgressIndicator(modifier = Modifier.size(24.dp))
                     Spacer(modifier = Modifier.width(16.dp))
                     Text("Sedang login...")
                 }
             }
         )
+    }
     }
 }
