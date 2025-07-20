@@ -24,8 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.app.latihan_jetpack.R
-
-
+import com.app.latihan_jetpack.utils.PreferenceManager
 
 
 @Composable
@@ -147,6 +146,8 @@ fun LoginScreen(navController: NavHostController) {
                             val body = response.body()
 
                             if (response.isSuccessful && body?.code == 200) {
+                                val token = body.token
+                                PreferenceManager.setToken(context, token.toString())
                                 // Login sukses, navigasi ke halaman Home
                                 Toast.makeText(context, "Login berhasil!", Toast.LENGTH_SHORT).show()
                                 navController.navigate(Screen.Home.route) {

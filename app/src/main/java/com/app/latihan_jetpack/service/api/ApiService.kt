@@ -1,8 +1,11 @@
 package com.app.latihan_jetpack.service.api
 
+import android.media.session.MediaSession.Token
 import com.app.latihan_jetpack.model.request.LoginRequest
+import com.app.latihan_jetpack.model.request.NoteCreateRequest
 import com.app.latihan_jetpack.model.request.RegisterRequest
 import com.app.latihan_jetpack.model.response.LoginResponse
+import com.app.latihan_jetpack.model.response.NoteCreateResponse
 import com.app.latihan_jetpack.model.response.NotesResponse
 import com.app.latihan_jetpack.model.response.RegisterResponse
 import retrofit2.Response
@@ -37,5 +40,9 @@ interface ApiService {
     @GET("/api/notes")
     suspend fun getAllNotes(): NotesResponse
 
-
+    @POST ("api/notes")
+    suspend fun createNotes(
+        @Header("Authorization")token: String,
+        @Body request: NoteCreateRequest
+    ) : Response<NoteCreateResponse>
 }
